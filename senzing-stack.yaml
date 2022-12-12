@@ -14,9 +14,6 @@ spec:
         - chartName: senzing-debug
           targetRevision: 1.3.0
           helmValues: ""
-        - chartName: senzing-postgresql-client
-          targetRevision: 2.2.0
-          helmValues: ""
   template:
     metadata:
       name: '{{ chartName }}'
