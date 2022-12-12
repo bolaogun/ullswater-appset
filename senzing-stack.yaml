@@ -17,7 +17,7 @@ spec:
   template:
     metadata:
       name: '{{ chartName }}'
-      namespace: argocd
+      namespace: '\{\{$$appNamespace\}\}'
     spec:
       project: default
       source:
