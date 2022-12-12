@@ -4,6 +4,8 @@ kind: ApplicationSet
 metadata:
   name: ullswater-appset
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   generators:
   - git:
