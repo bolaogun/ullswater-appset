@@ -4,8 +4,6 @@ kind: ApplicationSet
 metadata:
   name: senzing-stack
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   generators:
   - list:
@@ -20,6 +18,8 @@ spec:
     metadata:
       name: '{{ chartName }}'
       namespace: '\{\{$$appNamespace\}\}'
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
     spec:
       project: default
       source:

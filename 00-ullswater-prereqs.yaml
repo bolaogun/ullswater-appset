@@ -12,13 +12,15 @@ spec:
       repoURL: https://github.com/bolaogun/ullswater-appset
       revision: develop
       directories:
-      - path: apps/*
+      - path: preapps/*
   template:
     metadata:
       name: '{{path.basename}}'
       namespace: '\{\{$$appNamespace\}\}'
       annotations:
         argocd.argoproj.io/sync-wave: "-1"
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
     spec:
       project: default
       syncPolicy:
