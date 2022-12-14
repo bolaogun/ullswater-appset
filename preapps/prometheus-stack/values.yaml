@@ -1,0 +1,70 @@
+grafana:
+resources:
+    requests:
+    cpu: 500m
+    memory: 528Mi
+    limits:
+    cpu: 1.5
+    memory: 2Gi
+dashboardProviders:
+    dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+    - name: 'default'
+        orgId: 1
+        folder: 'Custom'
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+        path: /var/lib/grafana/dashboards/default
+dashboards:
+    default:
+    node-exporter:
+        gnetId: 1860
+        revision: 27
+        datasource: Prometheus
+    postgres-exporter:
+        gnetId: 9628
+        revision: 7
+        datasource: Prometheus
+    kafka-exporter:
+        gnetId: 7589
+        revision: 5
+        datasource: Prometheus
+    kafka-exporter-cluster:
+        gnetId: 14012
+        revision: 1
+        datasource: Prometheus
+    kafka-exporter-consumer:
+        gnetId: 14014
+        revision: 1
+        datasource: Prometheus
+    kafka-exporter-topic:
+        gnetId: 14013
+        revision: 1
+        datasource: Prometheus
+    nginx-controller:
+        gnetId: 9614
+        revision: 1
+        datasource: Prometheus
+    kubernetes-cluster:
+        gnetId: 15661
+        revision: 1
+        datasource: Prometheus
+    fluent-bit:
+        gnetId: 11620
+        revision: 1
+        datasource: Prometheus
+    istio-mesh:
+        gnetId: 7639
+        revision: 139
+        datasource: Prometheus
+    istio-service:
+        gnetId: 7636
+        revision: 139
+        datasource: Prometheus
+    istio-workload:
+        gnetId: 7630
+        revision: 139
+        datasource: Prometheus
