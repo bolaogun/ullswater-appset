@@ -5,8 +5,8 @@ metadata:
   name: ullswater-gitops-application
   namespace: argocd
   # Dangerous game to play this one!!!
-  # finalizers:
-  # - resources-finalizer.argocd.argoproj.io
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
 
 spec:
   project: default

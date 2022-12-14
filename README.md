@@ -4,7 +4,7 @@
 Install cluster, get it running & ensure it is your current context
 
 For minikube try:
-`minikube start --cpus 4 --memory 8192 --disk-size=50g --driver=docker`
+`minikube start --cpus 4 --memory 8192 --disk-size=50g --driver=docker --kubernetes-version=v1.21.0`
 
 Install Argocd thus:
 ```

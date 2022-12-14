@@ -4,6 +4,8 @@ kind: ApplicationSet
 metadata:
   name: senzing-stack
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   generators:
   - list:
@@ -14,12 +16,12 @@ spec:
         - chartName: senzing-debug
           targetRevision: 1.3.0
           helmValues: ""
-        - chartName: senzing-stream-loader
-          targetRevision: 2.4.3
-          helmValues: ""
-        - chartName: senzing-entity-search-web-app
-          targetRevision: 2.3.0
-          helmValues: ""
+        # - chartName: senzing-stream-loader
+        #   targetRevision: 2.4.3
+        #   helmValues: ""
+        # - chartName: senzing-entity-search-web-app
+        #   targetRevision: 2.3.0
+        #   helmValues: ""
   template:
     metadata:
       name: '{{ chartName }}'
