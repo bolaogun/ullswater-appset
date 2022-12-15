@@ -1,51 +1,29 @@
 ---
 apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
+kind: Application
 metadata:
-  name: senzing-stack
+  name: ullswater-senzing-stack
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "0"
 spec:
-  generators:
-  - list:
-      elements:
-        - chartName: senzing-console
-          targetRevision: 2.3.1
-          helmValues: ""
-        - chartName: senzing-debug
-          targetRevision: 1.3.0
-          helmValues: ""
-        # - chartName: senzing-stream-loader
-        #   targetRevision: 2.4.3
-        #   helmValues: ""
-        # - chartName: senzing-entity-search-web-app
-        #   targetRevision: 2.3.0
-        #   helmValues: ""
-  template:
-    metadata:
-      name: '{{ chartName }}'
-      namespace: '\{\{$$appNamespace\}\}'
-      finalizers:
-        - resources-finalizer.argocd.argoproj.io
-    spec:
-      project: default
-      source:
-        chart:  '{{ chartName }}'
-        targetRevision: '{{ targetRevision }}'
-        repoURL: https://hub.senzing.com/charts
-        helm:
-          values: '{{ helmValues }}'
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: senzing
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-          allowEmpty: false
-        syncOptions:
-        - Validate=false
-        - CreateNamespace=true
-        - PrunePropagationPolicy=foreground
-        - PruneLast=true
+  source:
+    path: apps/senzing-stack/
+    repoURL: 'https://github.com/bolaogun/ullswater-appset'
+    targetRevision: develop
+    directory:
+      recurse: true
+  destination:
+    namespace: senzing
+    server: 'https://kubernetes.default.svc'
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+    - Validate=false
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true

@@ -12,7 +12,7 @@ spec:
       repoURL: https://github.com/bolaogun/ullswater-appset
       revision: develop
       directories:
-      - path: prereqs/*
+      - path: apps/prereqs/*
   template:
     metadata:
       name: '{{path.basename}}'

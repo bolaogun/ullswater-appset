@@ -12,7 +12,7 @@ spec:
       repoURL: https://github.com/bolaogun/ullswater-appset
       revision: develop
       directories:
-      - path: postapps/*
+      - path: apps/postapps/*
   template:
     metadata:
       name: '{{path.basename}}'
