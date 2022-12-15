@@ -1,0 +1,47 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: ullswater-prereqs
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-10"
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/bolaogun/ullswater-appset
+      revision: develop
+      directories:
+      - path: apps/prereqs/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+      namespace: '\{\{$$appNamespace\}\}'
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
+      annotations:
+        argocd.argoproj.io/sync-wave: "-10"
+    spec:
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - Validate=false
+        - CreateNamespace=true
+        - PrunePropagationPolicy=foreground
+        - PruneLast=true
+        retry:
+          limit: 5
+          backoff:
+            duration: 2m0s
+            maxDuration: 5m0s
+            factor: 2
+      source:
+        repoURL: https://github.com/bolaogun/ullswater-appset
+        targetRevision: develop
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path.basename}}'
