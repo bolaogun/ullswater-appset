@@ -7,7 +7,6 @@ metadata:
   # Dangerous game to play this one!!!
   # finalizers:
   # - resources-finalizer.argocd.argoproj.io
-
 spec:
   project: default
   source:

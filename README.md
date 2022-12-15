@@ -10,10 +10,11 @@ Install Argocd thus:
 ```
 kubectl create ns argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl patch cm/argocd-cm --type=merge -n argocd --patch-file patch-argocd-cm.yaml
 kubectl get secrets argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 --decode ; echo
 kubectl port-forward -n argocd svc/argocd-server 8080:443 > /dev/null 2>&1 &
 kubectl apply -f application.yaml
 ```
 
-Navigate to https://localhost:8080/applications & use "admin" as the username along with the secret retrieved aralier
+Navigate to https://localhost:8080/applications & use "admin" as the username along with the secret retrieved earlier
 
