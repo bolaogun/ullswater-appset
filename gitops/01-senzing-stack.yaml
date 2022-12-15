@@ -8,7 +8,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "0"
 spec:
   source:
-    path: apps/senzing-stack/
+    path: apps/ullswater-senzing-stack/
     repoURL: 'https://github.com/bolaogun/ullswater-appset'
     targetRevision: develop
     directory:
