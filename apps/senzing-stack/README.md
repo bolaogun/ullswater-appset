@@ -21,11 +21,11 @@ A Helm chart for provisioning an Ullswater Senzing Stack
 | senzingStack.components[2].helmValues | string | `""` |  |
 | senzingStack.components[2].targetRevision | string | `"2.4.3"` |  |
 | senzingStack.components[3].chartName | string | `"senzing-redoer"` |  |
-| senzingStack.components[3].enabled | bool | `false` |  |
+| senzingStack.components[3].enabled | bool | `true` |  |
 | senzingStack.components[3].helmValues | string | `""` |  |
 | senzingStack.components[3].targetRevision | string | `"2.4.2"` |  |
 | senzingStack.components[4].chartName | string | `"swaggerapi-swagger-ui"` |  |
-| senzingStack.components[4].enabled | bool | `true` |  |
+| senzingStack.components[4].enabled | bool | `false` |  |
 | senzingStack.components[4].helmValues | string | `""` |  |
 | senzingStack.components[4].targetRevision | string | `"2.3.0"` |  |
 | senzingStack.components[5].chartName | string | `"senzing-debug"` |  |

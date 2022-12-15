@@ -40,5 +40,4 @@ senzingStack:
     targetRevision: 2.2.0
     enabled: false
     helmValues: ""
-
-
+  
