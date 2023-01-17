@@ -1,0 +1,36 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minio-operator
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: minio-operator
+    targetRevision: 4.3.7
+    repoURL: https://operator.min.io/
+    helm:
+      parameters:
+        - name:  tenants[0].name
+          value: ullswater-minio-tenant
+          forceString: true
+        - name:  tenants[0].namespace
+          value: minio-operator
+          forceString: true
+        - name:  tenants[0].pools[0].storageClassName
+          value: standard
+          forceString: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: minio-operator
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+    - Validate=false
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true
